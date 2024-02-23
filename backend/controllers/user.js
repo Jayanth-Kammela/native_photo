@@ -20,14 +20,15 @@ const forLogin = async (req, res) => {
 
 const forSignup = async (req, res) => {
   const { name,email, password } = req.body;
-
+  console.log(req.body);
   // const salt=bycryt.salt(10)
   // const hash=bycryt.hash(password,salt)
 
   try {
     const user = await userModel.signup(name,email, password);
-    return res.status(200).json(user);
+    return res.status(200).json(name,email);
   } catch (error) {
+    console.log(error);
     res.status(400).json({ error: error.message });
   }
 };
